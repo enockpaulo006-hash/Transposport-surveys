@@ -1,0 +1,361 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}
+Gender Analysis
+{% endblock %}
+
+{% block page_title %}
+Gender Analysis Dashboard
+{% endblock %}
+
+{% block page_subtitle %}
+Live Analysis From KoboToolbox
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+
+<div class="row g-4">
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card dashboard-card">
+
+<div class="card-body stat-card">
+
+<div class="icon blue">
+
+<i class="bi bi-people-fill"></i>
+
+</div>
+
+<div>
+
+<h6>
+
+Total Responses
+
+</h6>
+
+<h2>
+
+{{ total_responses }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card dashboard-card">
+
+<div class="card-body stat-card">
+
+<div class="icon green">
+
+<i class="bi bi-person-fill"></i>
+
+</div>
+
+<div>
+
+<h6>
+
+Male
+
+</h6>
+
+<h2>
+
+{{ male_count }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card dashboard-card">
+
+<div class="card-body stat-card">
+
+<div class="icon pink">
+
+<i class="bi bi-person-hearts"></i>
+
+</div>
+
+<div>
+
+<h6>
+
+Female
+
+</h6>
+
+<h2>
+
+{{ female_count }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="card dashboard-card">
+
+<div class="card-body stat-card">
+
+<div class="icon yellow">
+
+<i class="bi bi-pie-chart-fill"></i>
+
+</div>
+
+<div>
+
+<h6>
+Male : Female Ratio
+</h6>
+
+<h2>
+{{ male_count }} : {{ female_count }}
+</h2>
+
+<small class="text-muted">
+
+Based on {{ total_responses }} responses
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="row mt-4 g-4">
+
+    <!-- Gender Doughnut Chart -->
+
+    <div class="col-lg-6">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">
+
+                        Gender Distribution
+
+                    </h5>
+
+                    <span class="badge bg-primary">
+
+                        Live Data
+
+                    </span>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="genderAnalysisChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Age Distribution -->
+
+    <div class="col-lg-6">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">
+
+                        Age Group Distribution
+
+                    </h5>
+
+                    <span class="badge bg-success">
+
+                        Live Data
+
+                    </span>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="ageChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">
+
+                        Occupation Distribution
+
+                    </h5>
+
+                    <span class="badge bg-warning text-dark">
+
+                        Live Data
+
+                    </span>
+
+                </div>
+
+                <div class="chart-container" style="height:420px;">
+
+                    <canvas id="occupationChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <h4 class="mb-4">
+
+                    Gender Analysis Summary
+
+                </h4>
+
+                <div class="row text-center">
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-primary">
+
+                            {{ total_responses }}
+
+                        </h2>
+
+                        <p>Total Respondents</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-success">
+
+                            {{ male_count }}
+
+                        </h2>
+
+                        <p>Male Respondents</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-danger">
+
+                            {{ female_count }}
+
+                        </h2>
+
+                        <p>Female Respondents</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-warning">
+
+                            Live
+
+                        </h2>
+
+                        <p>KoboToolbox Data</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const genderLabels = {{ gender_labels|safe }};
+const genderValues = {{ gender_values|safe }};
+const ageLabels = {{ age_labels|safe }};
+const ageValues = {{ age_values|safe }};
+const occupationLabels = {{ occupation_labels|safe }};
+const occupationValues = {{ occupation_values|safe }};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'dashboard/js/gender_analysis.js' %}"></script>
+{% endblock %}

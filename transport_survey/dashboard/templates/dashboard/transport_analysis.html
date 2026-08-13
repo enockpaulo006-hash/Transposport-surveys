@@ -1,0 +1,243 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}
+Transport Analysis
+{% endblock %}
+
+{% block page_title %}
+Transport Analysis Dashboard
+{% endblock %}
+
+{% block page_subtitle %}
+Live Transport Mobility Analysis from KoboToolbox
+{% endblock %}
+
+{% block content %}
+
+<div class="row g-4">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon blue">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                    <h6>Total Responses</h6>
+                    <h2>{{ total_responses }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon green">
+                    <i class="bi bi-bus-front-fill"></i>
+                </div>
+                <div>
+                    <h6>Transport Modes</h6>
+                    <h2>{{ transport_labels|length }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon pink">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <div>
+                    <h6>Travel Time Groups</h6>
+                    <h2>{{ travel_labels|length }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon yellow">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <div>
+                    <h6>Most Used Transport</h6>
+
+                    <h2>{{ most_transport }}</h2>
+
+                    <small class="text-muted">
+
+                    {{ most_transport_count }} responses
+
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row mt-4 g-4">
+
+    <div class="col-lg-6">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">
+
+                        Transport Mode Distribution
+
+                    </h5>
+
+                    <span class="badge bg-primary">
+
+                        Live Data
+
+                    </span>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="transportModeChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">
+
+                        Travel Time Distribution
+
+                    </h5>
+
+                    <span class="badge bg-success">
+
+                        Live Data
+
+                    </span>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="travelTimeChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <h4 class="mb-4">
+
+                    Transport Analysis Summary
+
+                </h4>
+
+                <div class="row text-center">
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-primary">
+
+                            {{ total_responses }}
+
+                        </h2>
+
+                        <p>Total Survey Responses</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-success">
+
+                            {{ transport_labels|length }}
+
+                        </h2>
+
+                        <p>Transport Modes</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-warning">
+
+                            {{ travel_labels|length }}
+
+                        </h2>
+
+                        <p>Travel Time Categories</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                       <h2 class="text-danger">
+                         {{ most_transport }}
+                       </h2>
+
+                       <p>Responses Using {{ most_transport }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+const transportLabels = {{ transport_labels_json|safe }};
+const transportValues = {{ transport_values|safe }};
+
+const travelLabels = {{ travel_labels_json|safe }};
+const travelValues = {{ travel_values|safe }};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{% static 'dashboard/js/transport_analysis.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,215 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}
+Reports
+{% endblock %}
+
+{% block page_title %}
+Reports Dashboard
+{% endblock %}
+
+{% block page_subtitle %}
+Live Reports Generated from KoboToolbox
+{% endblock %}
+
+{% block content %}
+
+<div class="row g-4">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon blue">
+                    <i class="bi bi-file-earmark-bar-graph-fill"></i>
+                </div>
+                <div>
+                    <h6>Total Responses</h6>
+                    <h2>{{ total_responses }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon green">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+                <div>
+                    <h6>Male</h6>
+                    <h2>{{ male_count }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon pink">
+                    <i class="bi bi-person-hearts"></i>
+                </div>
+                <div>
+                    <h6>Female</h6>
+                    <h2>{{ female_count }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body stat-card">
+                <div class="icon yellow">
+                    <i class="bi bi-cloud-check-fill"></i>
+                </div>
+                <div>
+                    <h6>Status</h6>
+                    <h2>Live</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row mt-4 g-4">
+
+    <div class="col-lg-6">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">Gender Report</h5>
+
+                    <span class="badge bg-primary">Live Data</span>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="reportGenderChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">Transport Report</h5>
+
+                    <span class="badge bg-success">Live Data</span>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="reportTransportChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="card chart-card">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <h4 class="mb-0">Report Summary</h4>
+
+                    <div>
+
+                        <a href="{% url 'generate_report' %}" class="btn btn-outline-danger me-2">
+                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                            Export PDF
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-primary">{{ total_responses }}</h2>
+
+                        <p>Total Responses</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-success">{{ male_count }}</h2>
+
+                        <p>Male Respondents</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-danger">{{ female_count }}</h2>
+
+                        <p>Female Respondents</p>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h2 class="text-warning">Live</h2>
+
+                        <p>KoboToolbox Data</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+const genderLabels = {{ gender_labels|safe }};
+const genderValues = {{ gender_values|safe }};
+
+const transportLabels = {{ transport_labels|safe }};
+const transportValues = {{ transport_values|safe }};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{% static 'dashboard/js/reports.js' %}"></script>
+
+{% endblock %}

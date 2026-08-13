@@ -1,0 +1,251 @@
+body{
+    margin:0;
+    background:#f4f7fc;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:#0f172a;
+    color:white;
+    overflow-y:auto;
+}
+
+.logo-section{
+    text-align:center;
+    padding:30px 15px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.logo-section h2{
+    font-size:38px;
+    font-weight:700;
+    margin:0;
+}
+
+.menu{
+    list-style:none;
+    padding:20px 12px;
+    margin:0;
+}
+
+.menu li{
+    margin-bottom:10px;
+}
+
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:white;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:0.3s;
+    font-size:17px;
+}
+
+.menu a:hover{
+    background:#2563eb;
+}
+
+.menu i{
+    font-size:20px;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+    margin-left:260px;
+}
+
+/* TOPBAR */
+
+.topbar{
+    background:white;
+    padding:22px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 15px rgba(0,0,0,0.08);
+}
+
+.topbar h3{
+    margin:0;
+    font-weight:700;
+}
+
+.profile-icon{
+    font-size:40px;
+    color:#64748b;
+}
+
+/* CARDS */
+
+.dashboard-card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.stat-card{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.stat-card h6{
+    margin:0;
+    color:#64748b;
+}
+
+.stat-card h2{
+    margin-top:5px;
+    font-weight:700;
+}
+
+.icon{
+    width:65px;
+    height:65px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.blue{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.green{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.pink{
+    background:#fce7f3;
+    color:#ec4899;
+}
+
+.yellow{
+    background:#fef3c7;
+    color:#d97706;
+}
+
+/* CHART CARDS */
+
+.chart-card{
+    border:none;
+    border-radius:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.chart-card h4{
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.chart-container{
+    position:relative;
+    height:260px;
+    overflow: hidden;
+}
+
+/* MOBILE */
+
+@media(max-width:992px){
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    .main-content{
+        margin-left:0;
+    }
+
+    .topbar{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+}
+
+/*Sidebar Footer*/
+
+.sidebar{
+    display:flex;
+    flex-direction:column;
+}
+
+.menu{
+    flex:1;
+}
+
+.sidebar-footer{
+    padding:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.user-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+
+}
+
+.avatar{
+
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#334155;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+
+}
+
+.user-details h6{
+    color:#fff;
+    margin:0;
+    font-size:18px;
+    font-weight:600;
+}
+
+.user-details small{
+    color:#94a3b8;
+}
+
+.logout-btn{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    background:#dc2626;
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#b91c1c;
+    color:#fff;
+}

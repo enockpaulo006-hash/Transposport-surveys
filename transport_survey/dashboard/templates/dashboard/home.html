@@ -1,0 +1,248 @@
+{% extends "dashboard/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Transport Mobility Dashboard
+{% endblock %}
+
+{% block page_title %}
+GENDER-DISAGGREGATED TRANSPORT MOBILITY SURVEY SYSTEM
+{% endblock %}
+
+{% block page_subtitle %}
+Live Dashboard 
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid mt-4">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-body stat-card">
+                        <div class="icon blue">
+
+                            <i class="bi bi-file-earmark-text-fill"></i>
+                        </div>
+                        <div>
+                            <h6>Total Responses</h6>
+                            <h2>{{ total_responses }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card">
+
+                    <div class="card-body stat-card">
+
+                        <div class="icon green">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Male</h6>
+
+                            <h2>{{ male_count }}</h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card">
+
+                    <div class="card-body stat-card">
+
+                        <div class="icon pink">
+
+                            <i class="bi bi-person-hearts"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Female</h6>
+
+                            <h2>{{ female_count }}</h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card">
+
+                    <div class="card-body stat-card">
+
+                        <div class="icon yellow">
+
+                            <i class="bi bi-shield-check"></i>
+
+                        </div>
+
+                        <div>
+                            <h6>Most Used Transport</h6>
+                            <h2>{{ most_transport }}</h2>
+                            <small class="text-muted">
+                            {{ most_transport_count }} responses
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row mt-4 g-4">
+
+            <div class="col-lg-6">
+
+                <div class="card chart-card">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <h5 class="mb-0">
+
+                                Gender Distribution
+
+                            </h5>
+
+                            <span class="badge bg-primary">
+
+                                Live Data
+
+                            </span>
+
+                        </div> 
+
+                        <div class="chart-container">
+
+                            <canvas id="genderChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="card chart-card">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <h5 class="mb-0">
+
+                                Transport Mode Usage
+
+                            </h5>
+
+                            <span class="badge bg-success">
+
+                                Live Data
+
+                            </span>
+
+                        </div>
+
+                        <div class="chart-container">
+
+                            <canvas id="transportChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+                <div class="row mt-4 g-4">
+            <div class="col-lg-12">
+                <div class="card chart-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">
+                                System Summary
+                            </h5>
+                            <span class="badge bg-dark">
+                                Kobo API Connected
+                            </span>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <h3 class="text-primary">
+                                    {{ total_responses }}
+                                </h3>
+                                <p>Total Survey Responses</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="text-success">
+                                    {{ male_count }}
+                                </h3>
+                                <p>Male Participants</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="text-danger">
+                                    {{ female_count }}
+                                </h3>
+                                <p>Female Participants</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="text-warning">
+                                    {{ total_responses }}
+                                </h3>
+                                <p>Live Updates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  {% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const genderLabels = {{ gender_labels|safe }};
+
+const genderValues = {{ gender_values|safe }};
+
+const transportLabels = {{ transport_labels|safe }};
+
+const transportValues = {{ transport_values|safe }};
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{% static 'dashboard/js/charts.js' %}"></script>
+
+{% endblock %}

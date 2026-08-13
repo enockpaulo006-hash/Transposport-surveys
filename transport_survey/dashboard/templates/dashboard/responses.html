@@ -1,0 +1,500 @@
+{% extends "dashboard/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Survey Responses
+{% endblock %}
+
+{% block page_title %}
+Survey Responses
+{% endblock %}
+
+{% block page_subtitle %}
+Live Survey Responses from KoboToolbox
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<div class="row mb-4">
+
+<div class="col-md-6">
+
+<form method="GET">
+
+<div class="input-group">
+
+<input
+
+type="text"
+
+class="form-control"
+
+name="search"
+
+placeholder="Search..."
+
+value="{{ search }}">
+
+<button class="btn btn-primary">
+
+<i class="bi bi-search"></i>
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+<div class="col-md-6 text-end">
+
+<h5>
+
+Total Responses :
+
+<span class="badge bg-success">
+
+{{ total }}
+
+</span>
+
+</h5>
+
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>#</th>
+
+<th>Gender</th>
+
+<th>Age</th>
+
+<th>Occupation</th>
+
+<th>Origin</th>
+
+<th>Destination</th>
+
+<th>Transport</th>
+
+<th>Purpose</th>
+
+<th>Travel Time</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+    {% for row in page_obj %}
+
+<tr>
+
+<td>
+
+{{ forloop.counter }}
+
+</td>
+
+<td>
+
+{{ row.What_is_your_gender|default:"-" }}
+
+</td>
+
+<td>
+
+{{ row.What_is_your_age_group|default:"-" }}
+
+</td>
+
+<td>
+
+{{ row.What_is_your_occupation|default:"-" }}
+
+</td>
+
+<td>
+
+{{ row.What_is_your_usual_trip_origin|default:"-" }}
+
+</td>
+
+<td>
+
+{{ row.What_is_your_usual_destination|default:"-" }}
+
+</td>
+
+<td>
+
+{{ row.What_is_your_primary_mode_of_transport|default:"-" }}
+
+</td>
+
+<td>
+
+{{ row.What_is_the_main_purpose_of_your_trip|default:"-" }}
+
+</td>
+
+<td>
+
+{{ row.What_is_your_average_one_way_travel_time|default:"-" }}
+
+</td>
+
+<td>
+
+<button
+class="btn btn-sm btn-primary"
+
+data-bs-toggle="modal"
+
+data-bs-target="#responseModal"
+
+data-gender="{{ row.What_is_your_gender|default:'-' }}"
+
+data-age="{{ row.What_is_your_age_group|default:'-' }}"
+
+data-occupation="{{ row.What_is_your_occupation|default:'-' }}"
+
+data-origin="{{ row.What_is_your_usual_trip_origin|default:'-' }}"
+
+data-destination="{{ row.What_is_your_usual_destination|default:'-' }}"
+
+data-transport="{{ row.What_is_your_primary_mode_of_transport|default:'-' }}"
+
+data-purpose="{{ row.What_is_the_main_purpose_of_your_trip|default:'-' }}"
+
+data-time="{{ row.What_is_your_average_one_way_travel_time|default:'-' }}">
+
+<i class="bi bi-eye-fill"></i>
+
+View
+
+</button>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="10" class="text-center py-4">
+
+No survey responses found.
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<hr>
+
+<nav>
+
+<ul class="pagination justify-content-center">
+
+{% if page_obj.has_previous %}
+
+<li class="page-item">
+
+<a class="page-link"
+href="?page={{ page_obj.previous_page_number }}&search={{ search }}">
+
+Previous
+
+</a>
+
+</li>
+
+{% endif %}
+
+<li class="page-item active">
+
+<span class="page-link">
+
+{{ page_obj.number }}
+
+</span>
+
+</li>
+
+{% if page_obj.has_next %}
+
+<li class="page-item">
+
+<a class="page-link"
+href="?page={{ page_obj.next_page_number }}&search={{ search }}">
+
+Next
+
+</a>
+
+</li>
+
+{% endif %}
+
+</ul>
+
+</nav>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="row mt-3">
+
+    <div class="col-md-6">
+
+        <small class="text-muted">
+
+            Showing
+            <strong>{{ page_obj.start_index }}</strong>
+            -
+            <strong>{{ page_obj.end_index }}</strong>
+            of
+            <strong>{{ total }}</strong>
+            responses
+
+        </small>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="text-end">
+
+            <a href="{% url 'home' %}" class="btn btn-outline-primary">
+
+                <i class="bi bi-house-fill"></i>
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Response Details Modal -->
+
+<div class="modal fade" id="responseModal" tabindex="-1">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header bg-primary text-white">
+
+<h5 class="modal-title">
+
+Survey Response Details
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Gender
+
+</label>
+
+<p id="modalGender"></p>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Age Group
+
+</label>
+
+<p id="modalAge"></p>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Occupation
+
+</label>
+
+<p id="modalOccupation"></p>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Trip Origin
+
+</label>
+
+<p id="modalOrigin"></p>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Destination
+
+</label>
+
+<p id="modalDestination"></p>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Transport Mode
+
+</label>
+
+<p id="modalTransport"></p>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Purpose
+
+</label>
+
+<p id="modalPurpose"></p>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Travel Time
+
+</label>
+
+<p id="modalTime"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const responseModal = document.getElementById("responseModal");
+
+responseModal.addEventListener("show.bs.modal", function (event) {
+
+    const button = event.relatedTarget;
+
+    document.getElementById("modalGender").innerText =
+        button.dataset.gender;
+
+    document.getElementById("modalAge").innerText =
+        button.dataset.age;
+
+    document.getElementById("modalOccupation").innerText =
+        button.dataset.occupation;
+
+    document.getElementById("modalOrigin").innerText =
+        button.dataset.origin;
+
+    document.getElementById("modalDestination").innerText =
+        button.dataset.destination;
+
+    document.getElementById("modalTransport").innerText =
+        button.dataset.transport;
+
+    document.getElementById("modalPurpose").innerText =
+        button.dataset.purpose;
+
+    document.getElementById("modalTime").innerText =
+        button.dataset.time;
+
+});
+
+</script>
+
+{% endblock %}
