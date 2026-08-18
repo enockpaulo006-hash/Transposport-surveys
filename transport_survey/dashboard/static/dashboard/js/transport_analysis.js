@@ -21,7 +21,7 @@ new Chart(document.getElementById("transportModeChart"), {
     options: {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: "50%",
+        cutout: "60%",
         plugins: {
             legend: {
                 position: "bottom"
