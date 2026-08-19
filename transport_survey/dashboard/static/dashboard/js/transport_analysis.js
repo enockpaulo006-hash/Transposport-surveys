@@ -12,7 +12,7 @@ new Chart(document.getElementById("transportModeChart"), {
                 "#f59e0b",
                 "#ec4899",
                 "#8b5cf6",
-                "#06b6d4",
+                "#0e1213",
                 "#ef4444"
             ],
             borderWidth: 0
