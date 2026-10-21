@@ -14,7 +14,7 @@ new Chart(document.getElementById("safetyChart"), {
                 "#10b981",
                 "#3b82f6",
                 "#928877",
-                "#ef44b9",
+                "#e515a3",
                 "#8b5cf6",
                 "#06b6d4"
             ],
