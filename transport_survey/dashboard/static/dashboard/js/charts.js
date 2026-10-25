@@ -19,12 +19,12 @@ const genderChart = new Chart(
 
                     backgroundColor: [
 
-                        "#2fce59",
-                        "#e03aa6"
+                        "#12b13c",
+                        "#c51c8a"
 
                     ],
 
-                    hoverOffset: 8,
+                    hoverOffset: 10,
 
                     borderWidth: 0
 
