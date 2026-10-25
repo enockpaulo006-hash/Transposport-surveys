@@ -20,7 +20,7 @@ const genderChart = new Chart(
                     backgroundColor: [
 
                         "#12b13c",
-                        "#c51c8a"
+                        "#9f1870"
 
                     ],
 
