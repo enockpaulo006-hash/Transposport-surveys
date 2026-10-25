@@ -21,7 +21,7 @@ body{
     background:#d6c6c6;
     padding:40px;
     border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    box-shadow:0 15px 40px rgba(61, 5, 5, 0.25);
 }
 
 .login-card h2{
