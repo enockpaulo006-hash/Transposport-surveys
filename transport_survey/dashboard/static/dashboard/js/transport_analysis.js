@@ -39,7 +39,7 @@ new Chart(document.getElementById("travelTimeChart"), {
         datasets: [{
             label: "Respondents",
             data: travelValues,
-            backgroundColor: "#2563eb",
+            backgroundColor: "#2558c7",
             borderRadius: 8
         }]
     },
