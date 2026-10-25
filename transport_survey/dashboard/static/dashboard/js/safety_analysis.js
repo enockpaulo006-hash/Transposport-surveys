@@ -13,7 +13,7 @@ new Chart(document.getElementById("safetyChart"), {
             backgroundColor: [
                 "#10b981",
                 "#3b82f6",
-                "#928877",
+                "#ce9c45",
                 "#e515a3",
                 "#8b5cf6",
                 "#06b6d4"
