@@ -8,7 +8,7 @@ new Chart(document.getElementById("reportGenderChart"), {
             data: genderValues,
             backgroundColor: [
                 "#25eb4d",
-                "#d11975"
+                "#b30b5f"
             ],
             borderWidth: 0
         }]
