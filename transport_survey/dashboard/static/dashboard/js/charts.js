@@ -96,7 +96,7 @@ const transportChart = new Chart(
 
                         "#2563eb",
 
-                        "#22c55e",
+                        "#0edd5a",
 
                         "#966818",
 
