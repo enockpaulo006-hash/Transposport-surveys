@@ -7,7 +7,7 @@ new Chart(document.getElementById("transportModeChart"), {
         datasets: [{
             data: transportValues,
             backgroundColor: [
-                "#090909",
+                "#292727",
                 "#10b981",
                 "#f59e0b",
                 "#ec4899",
