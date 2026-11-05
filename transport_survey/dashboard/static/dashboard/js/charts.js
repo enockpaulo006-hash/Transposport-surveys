@@ -41,7 +41,7 @@ const genderChart = new Chart(
 
             maintainAspectRatio: false,
 
-            cutout: '50%',
+            cutout: '60%',
 
             plugins: {
 
