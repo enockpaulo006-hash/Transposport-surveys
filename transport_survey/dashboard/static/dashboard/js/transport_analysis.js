@@ -8,11 +8,11 @@ new Chart(document.getElementById("transportModeChart"), {
             data: transportValues,
             backgroundColor: [
                 "#292727",
-                "#10b981",
+                "#05f4a4",
                 "#f59e0b",
                 "#ec4899",
-                "#8b5cf6",
-                "#18b8e0",
+                "#6429ee",
+                "#0ec0ed",
                 "#ef4444"
             ],
             borderWidth: 0
