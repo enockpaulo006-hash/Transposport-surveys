@@ -21,7 +21,7 @@ new Chart(document.getElementById("transportModeChart"), {
     options: {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: "60%",
+        cutout: "65%",
         plugins: {
             legend: {
                 position: "bottom"
@@ -39,7 +39,7 @@ new Chart(document.getElementById("travelTimeChart"), {
         datasets: [{
             label: "Respondents",
             data: travelValues,
-            backgroundColor: "#1048c1",
+            backgroundColor: "#1d5eea",
             borderRadius: 8
         }]
     },
