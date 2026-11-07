@@ -9,7 +9,7 @@ new Chart(document.getElementById("transportModeChart"), {
             backgroundColor: [
                 "#2d2828",
                 "#05f4a4",
-                "#f59e0b",
+                "#e8b762",
                 "#ec4899",
                 "#6429ee",
                 "#0ec0ed",
@@ -39,7 +39,7 @@ new Chart(document.getElementById("travelTimeChart"), {
         datasets: [{
             label: "Respondents",
             data: travelValues,
-            backgroundColor: "#184bb9",
+            backgroundColor: "#1b5be6",
             borderRadius: 8
         }]
     },
