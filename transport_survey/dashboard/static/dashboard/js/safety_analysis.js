@@ -11,12 +11,12 @@ new Chart(document.getElementById("safetyChart"), {
         datasets: [{
             data: safetyValues,
             backgroundColor: [
-                "#10b981",
-                "#3b82f6",
-                "#ce9c45",
-                "#e511a2",
+                "#cdded8",
+                "#15df3a",
+                "#0a0a09e1",
+                "#e5f31b",
                 "#111014",
-                "#14d3f4"
+                "#0c56eb"
             ],
             borderWidth: 0
         }]
