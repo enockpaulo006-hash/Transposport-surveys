@@ -10,8 +10,8 @@ new Chart(
                 {
                     data: genderValues,
                     backgroundColor: [
-                        "#c60d0d",
-                        "#e5e0f5"
+                        "#d12121",
+                        "#eeecf3"
                     ],
                     borderWidth: 0
                 }
